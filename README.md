@@ -176,7 +176,7 @@ Getting Fleetbase up and running on your system using Docker and Docker-compose 
   </li>
   <li>
     Clone the Fleetbase repository to your local machine:
-    <pre>git clone git@github.com:fleetbase/fleetbase.git</pre>
+    <pre>git clone git@github.com:Kayarn-Mechatronics/fleetbase.git</pre>
   </li>
   <li>
     Navigate to the cloned repository:
