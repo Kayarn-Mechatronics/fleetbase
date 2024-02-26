@@ -21,7 +21,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => array_filter(['http://34.135.255.30:4200',env('CONSOLE_HOST'), Utils::addWwwToUrl(env('CONSOLE_HOST'))]),
+    'allowed_origins' => ['http://localhost:4200', 'http://34.135.255.30:4200'],
 
     'allowed_origins_patterns' => [],
 
