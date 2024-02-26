@@ -17,8 +17,8 @@ api/composer-install-dev.sh
 api/auth.json
 act.sh
 composer-auth.json
-# docker/database/*
-# docker/database/mysql/*
+docker/database/*
+docker/database/mysql/*
 .talismanrc
 verdaccio/minio
 verdaccio/config/htpasswd
