@@ -29,7 +29,7 @@ services:
       dockerfile: docker/Dockerfile
       target: events-dev
       args:
-        ENVIRONMENT: development
+        ENVIRONMENT: production
     environment:
       DATABASE_URL: "mysql://root@database/fleetbase"
       QUEUE_CONNECTION: redis
@@ -43,11 +43,14 @@ services:
       - "4200:4200"
     volumes:
       - ./console:/app/console
+    hostname: console
     build:
       context: .
       dockerfile: console/Dockerfile
       args:
-        ENVIRONMENT: development
+        ENVIRONMENT: production
+    networks:
+      - bridge
 
   application:
     build:
@@ -55,7 +58,7 @@ services:
       dockerfile: docker/Dockerfile
       target: app-dev
       args:
-        ENVIRONMENT: development
+        ENVIRONMENT: production
         GITHUB_AUTH_KEY: ${GITHUB_AUTH_KEY}
     environment:
       DATABASE_URL: "mysql://root@database/fleetbase"
@@ -82,3 +85,22 @@ services:
       - "8000:80"
     depends_on:
       - application
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    networks:
+      - bridge
+    depends_on:
+      - application
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    volumes:
+      - ./nginx/prod/:/etc/nginx/conf.d/:ro
+      - /etc/letsencrypt/:/etc/letsencrypt/
+
+networks:
+  bridge:
+    driver: bridge
