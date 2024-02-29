@@ -49,8 +49,6 @@ services:
       dockerfile: console/Dockerfile
       args:
         ENVIRONMENT: development
-    networks:
-      - bridge
 
   application:
     build:
@@ -100,7 +98,3 @@ services:
     volumes:
       - ./nginx/prod/:/etc/nginx/conf.d/:ro
       - /etc/letsencrypt/:/etc/letsencrypt/
-
-networks:
-  bridge:
-    driver: bridge
