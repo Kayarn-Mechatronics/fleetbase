@@ -29,7 +29,7 @@ services:
       dockerfile: docker/Dockerfile
       target: events-dev
       args:
-        ENVIRONMENT: production
+        ENVIRONMENT: development
     environment:
       DATABASE_URL: "mysql://root@database/fleetbase"
       QUEUE_CONNECTION: redis
@@ -48,7 +48,7 @@ services:
       context: .
       dockerfile: console/Dockerfile
       args:
-        ENVIRONMENT: production
+        ENVIRONMENT: development
     networks:
       - bridge
 
@@ -58,7 +58,7 @@ services:
       dockerfile: docker/Dockerfile
       target: app-dev
       args:
-        ENVIRONMENT: production
+        ENVIRONMENT: development
         GITHUB_AUTH_KEY: ${GITHUB_AUTH_KEY}
     environment:
       DATABASE_URL: "mysql://root@database/fleetbase"
